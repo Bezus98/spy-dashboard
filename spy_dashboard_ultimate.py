@@ -119,8 +119,8 @@ else:
 latest = X.tail(1)
 latest_label = df['label'].tail(1).values[0]
 probs = model.predict_proba(latest)[0]
-classes = le.classes_
-top_class = np.argmax(probs)
+classes = le.classes_.flatten() if hasattr(le.classes_, 'flatten') else le.classes_
+top_class = int(np.argmax(probs))
 confidence = probs[top_class]
 rolling_predictions = model.predict(X.tail(30))
 rolling_true = y[-30:]
