@@ -40,12 +40,6 @@ st.set_page_config(page_title="SPY Ultimate Dashboard", layout="wide")
 st.title("SPY Ultimate Prediction Dashboard")
 st.markdown("Multiclass labels + model stacking + adaptive thresholds + mobile mode.")
 
-countdown = st.empty()
-for i in range(REFRESH_INTERVAL, 0, -1):
-    countdown.markdown(f"### Auto-refreshing in {i} seconds...")
-    time.sleep(1)
-st.experimental_rerun()
-
 @st.cache_data
 def fetch_news_sentiment(api_key):
     url = "https://newsapi.org/v2/everything"
