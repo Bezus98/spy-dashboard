@@ -88,7 +88,8 @@ if df is None:
 # Sentiment
 sentiment_score, sentiment_series, headlines = fetch_news_sentiment(NEWSAPI_KEY)
 df['sentiment'] = sentiment_score
-df['sentiment_change'] = pd.Series(sentiment_series).diff().fillna(0).iloc[-1]
+sentiment_scores = pd.Series(sentiment_series)
+df['sentiment_change'] = sentiment_scores.diff().fillna(0).values[-1]
 
 # Labeling
 returns = df['return'].shift(-1)
