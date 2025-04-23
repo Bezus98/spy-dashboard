@@ -66,8 +66,8 @@ def fetch_news_sentiment(api_key):
 def load_data():
     df = yf.download("SPY", period=SPY_PERIOD, interval=SPY_INTERVAL)
     if df.empty or 'Close' not in df.columns:
-    st.error("Error: Could not load SPY data. Please check your internet or try again later.")
-    st.stop()
+        st.error("Error: Could not load SPY data. Please check your internet or try again later.")
+        st.stop()
     df['rsi'] = RSIIndicator(close=df['Close']).rsi()
     macd = MACD(close=df['Close'])
     df['macd'] = macd.macd()
